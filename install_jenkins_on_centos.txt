@@ -1,0 +1,22 @@
+# steps to install jenkins on centos
+# Installing Java 8 on CentOS 7
+$ sudo yum update
+$ sudo yum install -y java-1.8.0-openjdk-devel
+$ java -version
+$ update-alternatives --config java
+-- copy the path of java
+Step 2: Setting Java’s Path in Your Environment
+vim ~/.bash_profile
+echo "export JAVA_HOME=<path of java>/" >> ~/.bashrc
+source ~/.bashrc
+echo $JAVA_HOME
+-----------------
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+sudo yum upgrade
+# Add required dependencies for the jenkins package
+sudo yum install jenkins -y
+sudo systemctl daemon-reload
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
